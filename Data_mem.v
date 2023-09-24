@@ -25,16 +25,16 @@ module data_memory (
     input [31:0] write_data,
     input write_enable,
     input clk,
-    output reg [31:0] read_data
+    output [31:0] read_data
 );
 
+assign read_data = memory[address[11:0]];
 reg [31:0] memory[0:4095];
 
-always @(posedge clk) begin
-    if (write_enable) begin
+always @(posedge clk) 
+begin
+    if (write_enable) 
         memory[address[11:0]] <= write_data;
-    end
-    read_data <= memory[address[11:0]];
 end
 
 endmodule
